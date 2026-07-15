@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIJIL N. VARGHESE — Software Engineer & Systems Architect</title>
+    <meta name="description" content="Portfolio of Sijil N. Varghese, Software Engineering Student at Amal Jyothi College of Engineering. Specialized in low-level systems, hardware analysis, cybersecurity, and WebAR architectures.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Local Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Systems Coordinates Cursor Tracker -->
+    <div id="custom-cursor" class="custom-cursor">
+        <div class="cursor-crosshair"></div>
+        <div class="cursor-coords">X: 000 // Y: 000</div>
+    </div>
+
+    <!-- Segmented Scroll Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-segment" data-section="0"></div>
+        <div class="scroll-segment" data-section="1"></div>
+        <div class="scroll-segment" data-section="2"></div>
+        <div class="scroll-segment" data-section="3"></div>
+        <div class="scroll-segment" data-section="4"></div>
+        <div class="scroll-segment" data-section="5"></div>
+    </div>
+
+    <!-- Background Grid System -->
+    <div class="grid-backdrop"></div>
+    <div class="radial-glow-overlay"></div>
+
+    <!-- Floating UI Side Panels (Signature Elements) -->
+    <!-- Left panel: Socials -->
+    <aside class="side-panel side-left">
+        <div class="side-panel-inner">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="side-icon" aria-label="GitHub">
+                <i data-lucide="github"></i>
+                <span class="icon-label">GITHUB</span>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="side-icon" aria-label="LinkedIn">
+                <i data-lucide="linkedin"></i>
+                <span class="icon-label">LINKEDIN</span>
+            </a>
+            <a href="mailto:sijilnv3@gmail.com" class="side-icon" aria-label="Email">
+                <i data-lucide="mail"></i>
+                <span class="icon-label">EMAIL</span>
+            </a>
+            <div class="side-line"></div>
+        </div>
+    </aside>
+
+    <!-- Right panel: Navigation/Scroll status -->
+    <aside class="side-panel side-right">
+        <div class="side-panel-inner">
+            <span class="vertical-scroll-text">SCROLL DOWN</span>
+            <div class="scroll-indicator-bar">
+                <div class="scroll-indicator-fill"></div>
+            </div>
+            <span class="section-counter">01</span>
+        </div>
+    </aside>
+
+    <!-- Sticky Navigation Header -->
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="logo-wrapper">
+                <!-- Anchor Target for Docking Animation -->
+                <a href="#home" class="nav-logo" id="nav-logo-target">
+                    <span class="ghost-char">S</span>
+                    <span class="ghost-char">i</span>
+                    <span class="ghost-char">j</span>
+                    <span class="ghost-char">i</span>
+                    <span class="ghost-char">l</span>
+                    <span class="ghost-char">&nbsp;</span>
+                    <span class="ghost-char">N</span>
+                    <span class="ghost-char">.</span>
+                    <span class="nav-logo-space">&nbsp;</span>
+                    <span class="ghost-char">V</span>
+                    <span class="ghost-char">A</span>
+                    <span class="ghost-char">R</span>
+                    <span class="ghost-char">G</span>
+                    <span class="ghost-char">H</span>
+                    <span class="ghost-char">E</span>
+                    <span class="ghost-char">S</span>
+                    <span class="ghost-char">E</span>
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="#home" class="nav-item">/HOME</a>
+                <a href="#about" class="nav-item">/ABOUT</a>
+                <a href="#skills" class="nav-item">/SKILLS</a>
+                <a href="#projects" class="nav-item">/PROJECTS</a>
+                <a href="#experience" class="nav-item">/TIMELINE</a>
+                <a href="#contact" class="nav-item">/CONTACT</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+                <span class="toggle-line"></span>
+                <span class="toggle-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Absolute Floating Container for Docked Name Characters -->
+    <div class="floating-chars-container" id="floating-chars"></div>
+
+    <main class="page-container">
+        
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <canvas id="hero-canvas" class="background-canvas"></canvas>
+            <div class="hero-content">
+                <span class="system-status-log">// SYSTEM: RUNNING_KERNEL_8086_X64</span>
+                
+                <!-- Huge typography name structure (Ghost container for layout reference) -->
+                <div class="hero-name-ghost-container" id="hero-name-ghost">
+                    <div class="name-row row-first">
+                        <span class="ghost-char">S</span>
+                        <span class="ghost-char">i</span>
+                        <span class="ghost-char">j</span>
+                        <span class="ghost-char">i</span>
+                        <span class="ghost-char">l</span>
+                        <span class="ghost-char">&nbsp;</span>
+                        <span class="ghost-char">N</span>
+                        <span class="ghost-char">.</span>
+                    </div>
+                    <div class="name-row row-second">
+                        <span class="ghost-char">V</span>
+                        <span class="ghost-char">A</span>
+                        <span class="ghost-char">R</span>
+                        <span class="ghost-char">G</span>
+                        <span class="ghost-char">H</span>
+                        <span class="ghost-char">E</span>
+                        <span class="ghost-char">S</span>
+                        <span class="ghost-char">E</span>
+                    </div>
+                </div>
+
+                <div class="hero-bottom-info">
+                    <p class="hero-role-desc">> SOFTWARE ENGINEER & SYSTEMS ARCHITECT</p>
+                    <a href="#about" class="hero-cta-btn">
+                        <span class="btn-text">INITIALIZE DIAGNOSTICS</span>
+                        <span class="btn-arrow"><i data-lucide="arrow-down-right"></i></span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-scroll-prompt">
+                <span class="scroll-status-marker">SCROLL</span>
+                <div class="scroll-status-line"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <div class="about-grid">
+                    <div class="about-text-wrapper">
+                        <span class="section-tag">// CONFIG // ABOUT.CFG</span>
+                        <h2 class="section-heading">SYSTEM CORE</h2>
+                        <p class="about-paragraph highlight-paragraph">
+                            I'm a software engineering student at Amal Jyothi College of Engineering who enjoys diving deep into the mechanics of technology. My technical foundation spans high-level languages like Python and Java down to 8086 Assembly. Beyond standard development, I have a strong interest in customized Linux environments, high-performance hardware
+                        </p>
+                    </div>
+                    <div class="about-schematic-card">
+                        <div class="card-border"></div>
+                        <div class="console-header">
+                            <span class="console-button red"></span>
+                            <span class="console-button yellow"></span>
+                            <span class="console-button green"></span>
+                            <span class="console-title">status_diagnostics.sh</span>
+                        </div>
+                        <div class="console-body">
+                            <div class="console-line"><span class="prompt">$</span> systemctl status sijil-varghese.core</div>
+                            <div class="console-line success">● sijil-varghese.core - Core Developer Identity</div>
+                            <div class="console-line sub-line">Loaded: loaded (/etc/systemd/system/sijil-varghese.service)</div>
+                            <div class="console-line sub-line">Active: active (running) since Tue 2026-07-14 21:47:11 IST</div>
+                            <div class="console-line"><span class="prompt">$</span> uname -a</div>
+                            <div class="console-line info">Linux kottayam-node 6.8.0-custom-x86_64 #1 SMP PREEMPT_DYNAMIC Assembly Core</div>
+                            <div class="console-line"><span class="prompt">$</span> cat /proc/cpuinfo | grep "model name"</div>
+                            <div class="console-line info">model name : 8086 Emulator & Virtualized Pipeline Core</div>
+                            <div class="console-line"><span class="prompt">$</span> <span class="blink-cursor">_</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section (Bento Grid) -->
+        <section id="skills" class="skills-section">
+            <div class="section-container">
+                <div class="section-header-row">
+                    <div>
+                        <span class="section-tag">// DEP_MATRIX // SKILLS.DAT</span>
+                        <h2 class="section-heading">CAPABILITY GRID</h2>
+                    </div>
+                </div>
+                <div class="bento-grid">
+                    <!-- High-Level card -->
+                    <div class="bento-card card-double">
+                        <div class="card-glow"></div>
+                        <div class="card-inner">
+                            <div class="card-top">
+                                <span class="card-index">01 //</span>
+                                <i data-lucide="layers" class="card-icon"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">High-Level Programming</h3>
+                                <p class="card-desc">Designing scalable software systems and modular structures leveraging modern object-oriented architectures.</p>
+                                <div class="skills-list">
+                                    <div class="skill-pill" data-tooltip="Object-oriented, script design, data pipelines">Python</div>
+                                    <div class="skill-pill" data-tooltip="Enterprise logic, multithreading, structural code">Java</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Low-Level card -->
+                    <div class="bento-card card-single">
+                        <div class="card-glow"></div>
+                        <div class="card-inner">
+                            <div class="card-top">
+                                <span class="card-index">02 //</span>
+                                <i data-lucide="binary" class="card-icon"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Low-Level & Systems</h3>
+                                <p class="card-desc">Writing performance-critical code directly mapping registers and instructions to raw hardware.</p>
+                                <div class="skills-list">
+                                    <div class="skill-pill" data-tooltip="Instruction execution, register control, memory mapping">8086 Assembly</div>
+                                    <div class="skill-pill" data-tooltip="Kernel customization, bash scripting, configuration control">Linux/Ubuntu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hardware Analysis card -->
+                    <div class="bento-card card-single">
+                        <div class="card-glow"></div>
+                        <div class="card-inner">
+                            <div class="card-top">
+                                <span class="card-index">03 //</span>
+                                <i data-lucide="cpu" class="card-icon"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Hardware Analysis</h3>
+                                <p class="card-desc">Diving deep into physical processor buses, cycle-by-cycle timings, and hardware specifications.</p>
+                                <div class="skills-list">
+                                    <div class="skill-pill" data-tooltip="Register cycles, memory alignment, I/O mapping">Bus Architecture</div>
+                                    <div class="skill-pill" data-tooltip="Microprocessor emulation, assembly logic routing">Hardware Emulators</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cybersecurity card -->
+                    <div class="bento-card card-double">
+                        <div class="card-glow"></div>
+                        <div class="card-inner">
+                            <div class="card-top">
+                                <span class="card-index">04 //</span>
+                                <i data-lucide="shield-alert" class="card-icon"></i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Cybersecurity</h3>
+                                <p class="card-desc">Mapping threat vectors, profiling digital footprints, and performing network structure analysis.</p>
+                                <div class="skills-list">
+                                    <div class="skill-pill" data-tooltip="Visual relationship parsing, data mapping networks">OSINT Mapping</div>
+                                    <div class="skill-pill" data-tooltip="Network security checks, vector audits, port probing">Security Diagnostics</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="section-container">
+                <div class="section-header-row">
+                    <div>
+                        <span class="section-tag">// COMPILED_BUILDS // REPOS.DB</span>
+                        <h2 class="section-heading">FEATURED PROJECT ARCHITECTURES</h2>
+                    </div>
+                </div>
+                
+                <div class="projects-grid-bento">
+                    <!-- Project 1: Developer Branding Card -->
+                    <div class="project-bento-card branding-card">
+                        <div class="project-glow"></div>
+                        <div class="project-border-top"></div>
+                        <div class="project-card-inner">
+                            <div class="project-meta-row">
+                                <span class="project-index">01 // IDENTITY</span>
+                                <span class="project-type">Developer Profile</span>
+                            </div>
+                            <div class="branding-box">
+                                <h3 class="branding-glitch-title" data-text="SIJIL N. VARGHESE">SIJIL N. VARGHESE</h3>
+                            </div>
+                            <p class="project-text-desc">
+                                Systems programmer and low-level application architect. Synthesizing high-level programming modules with virtualized assembly emulators and Unix environment security profiles.
+                            </p>
+                            <div class="project-tags-row">
+                                <span class="p-tag">Core.sys</span>
+                                <span class="p-tag">x86_64</span>
+                                <span class="p-tag">Glitch.io</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: 8086 Assembly Card -->
+                    <div class="project-bento-card">
+                        <div class="project-glow"></div>
+                        <div class="project-border-top"></div>
+                        <div class="project-card-inner">
+                            <div class="project-meta-row">
+                                <span class="project-index">02 // SELECT_BUILD</span>
+                                <span class="project-type">Low-level Instruction Logic</span>
+                            </div>
+                            <h3 class="project-name-title">8086 Assembly Algorithmic Analyzers</h3>
+                            <p class="project-text-desc">
+                                Emulated low-level register diagnostics execution engines. Simulates register operations, division cycles, flags calculation steps, and memory alignment traces for structural assembly algorithms.
+                            </p>
+                            
+                            <div class="canvas-widget-container">
+                                <canvas id="canvas-assembly-registers" class="canvas-widget"></canvas>
+                                <div class="canvas-panel-overlay">
+                                    <span class="overlay-tag">REG_TRACE // BUS_OK</span>
+                                    <span class="overlay-tag flex-grow-1"></span>
+                                    <span class="overlay-tag font-mono">CYCLE: 8086</span>
+                                </div>
+                            </div>
+
+                            <div class="project-tags-row">
+                                <span class="p-tag">8086 ASM</span>
+                                <span class="p-tag">Register Map</span>
+                                <span class="p-tag">Memory Buses</span>
+                                <span class="p-tag">Instruction cycle</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Education Section -->
+        <section id="experience" class="experience-section">
+            <div class="section-container">
+                <div class="section-header-row">
+                    <div>
+                        <span class="section-tag">// ARCHIVE // TIMELINE.LOG</span>
+                        <h2 class="section-heading">TIMELINE ARCHITECTURE</h2>
+                    </div>
+                </div>
+
+                <div class="timeline-container">
+                    <div class="timeline-line-center"></div>
+
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-bullet"><i data-lucide="graduation-cap"></i></div>
+                        <div class="timeline-card">
+                            <div class="card-border"></div>
+                            <span class="timeline-date">2023 — PRESENT</span>
+                            <h3 class="timeline-title">B.Tech in Software Engineering</h3>
+                            <h4 class="timeline-org">Amal Jyothi College of Engineering</h4>
+                            <p class="timeline-text">Focusing on deep systems design, high-performance data processing models, algorithm complexities, database internals, and networking infrastructures.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item timeline-right">
+                        <div class="timeline-bullet"><i data-lucide="terminal"></i></div>
+                        <div class="timeline-card">
+                            <div class="card-border"></div>
+                            <span class="timeline-date">ACADEMIC // LEADERSHIP</span>
+                            <h3 class="timeline-title">Lab Leadership & Development</h3>
+                            <h4 class="timeline-org">Systems & OS Laboratories</h4>
+                            <p class="timeline-text">Leading low-level programming lab initiatives, developing helper systems diagnostic suites, and aiding colleagues in structural hardware debugging.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-bullet"><i data-lucide="cpu"></i></div>
+                        <div class="timeline-card">
+                            <div class="card-border"></div>
+                            <span class="timeline-date">ACADEMIC // LABS</span>
+                            <h3 class="timeline-title">Low-Level Programming Coursework</h3>
+                            <h4 class="timeline-org">Hardware & Register Logic Systems</h4>
+                            <p class="timeline-text">Designed and compiled division, multiplication, and sorting routines directly mapping registers on 8086 microprocessor simulators.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="timeline-item timeline-right">
+                        <div class="timeline-bullet"><i data-lucide="hard-drive"></i></div>
+                        <div class="timeline-card">
+                            <div class="card-border"></div>
+                            <span class="timeline-date">ACADEMIC // EXPERIMENTS</span>
+                            <h3 class="timeline-title">Hardware & OS Migration Projects</h3>
+                            <h4 class="timeline-org">Linux Environment Architectures</h4>
+                            <p class="timeline-text">Configured custom operating system kernels, tailored Unix command sets, and developed customized operating workflows for low-latency host systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-container">
+                <span class="section-tag">// CONNECTION // HANDSHAKE.INIT</span>
+                <h2 class="contact-main-header">CONTACT</h2>
+
+                <div class="contact-grid">
+                    <div class="contact-info-block">
+                        <p class="contact-intro-text">
+                            Initiate a socket connection. Send coordinates, systems inquiries, or collaboration parameters directly. Let's engineer efficient codebases together.
+                        </p>
+                        <div class="contact-meta-details">
+                            <div class="meta-item">
+                                <span class="meta-label">E-MAIL //</span>
+                                <a href="mailto:sijilnv3@gmail.com" class="meta-value copyable-value" id="copy-email">sijilnv3@gmail.com</a>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">PHONE //</span>
+                                <a href="tel:9744754273" class="meta-value copyable-value" id="copy-phone">9744754273</a>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label">LOCATION //</span>
+                                <span class="meta-value">Thengana, Kottayam, Kerala, India</span>
+                            </div>
+                        </div>
+                        <div class="system-status-indicator">
+                            <span class="status-pulse-dot"></span>
+                            <span class="status-message">CORE HOST READY FOR COMPILATION</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-block">
+                        <div class="form-wrapper">
+                            <div class="card-border"></div>
+                            <h3 class="form-section-title">CONTACT FORM</h3>
+                            <form id="contact-form" autocomplete="off" novalidate>
+                                <div class="form-group">
+                                    <input type="text" id="form-name" required placeholder=" ">
+                                    <label for="form-name">Your Name</label>
+                                    <span class="focus-line"></span>
+                                    <span class="error-msg">Name field cannot be null.</span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" id="form-phone" required placeholder=" ">
+                                    <label for="form-phone">Your Phone</label>
+                                    <span class="focus-line"></span>
+                                    <span class="error-msg">Please enter a valid phone number.</span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" id="form-email" required placeholder=" ">
+                                    <label for="form-email">Your Email</label>
+                                    <span class="focus-line"></span>
+                                    <span class="error-msg">Please enter a valid email.</span>
+                                </div>
+                                <div class="form-group">
+                                    <textarea id="form-message" required placeholder=" " rows="4"></textarea>
+                                    <label for="form-message">Message Parameters</label>
+                                    <span class="focus-line"></span>
+                                    <span class="error-msg">Message body cannot be empty.</span>
+                                </div>
+                                <button type="submit" class="submit-btn" id="submit-btn">
+                                    <span class="btn-text-content">SEND MESSAGE</span>
+                                    <span class="btn-loader-element"></span>
+                                </button>
+                            </form>
+                            <div class="form-feedback-overlay" id="feedback-overlay">
+                                <i data-lucide="check-circle" class="success-icon"></i>
+                                <span class="feedback-heading">TRANSMISSION SECURED</span>
+                                <span class="feedback-text">Your message packet has been routed successfully.</span>
+                                <button class="reset-form-btn" id="reset-form-btn">OPEN NEW CONNECTION</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-top-row">
+                    <span class="footer-logo">SIJIL N. VARGHESE</span>
+                    <nav class="footer-nav">
+                        <a href="#home">/HOME</a>
+                        <a href="#about">/ABOUT</a>
+                        <a href="#skills">/SKILLS</a>
+                        <a href="#projects">/PROJECTS</a>
+                        <a href="#experience">/TIMELINE</a>
+                        <a href="#contact">/CONTACT</a>
+                    </nav>
+                </div>
+                <div class="footer-bottom-row">
+                    <span class="footer-copy">© 2026 SIJIL N. VARGHESE. ALL ASSETS COMPILED.</span>
+                    <span class="footer-thanks">Thanks for watching</span>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Dependencies via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
