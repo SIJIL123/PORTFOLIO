@@ -555,32 +555,34 @@ document.addEventListener('DOMContentLoaded', () => {
             return isValid;
         }
 
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             let formIsValid = true;
             inputs.forEach(input => {
-                if (!validateField(input)) {
-                    formIsValid = false;
-                }
+                if (!validateField(input)) formIsValid = false;
             });
+            if (!formIsValid) return;
 
-            if (formIsValid) {
-                submitBtn.classList.add('loading');
-                submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
 
-                // Simulate routing packet pipeline latency
-                setTimeout(() => {
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    
-                    // Show confirmation overlay
-                    feedbackOverlay.classList.add('active');
-                    contactForm.reset();
-                    inputs.forEach(input => {
-                        input.placeholder = " "; // restore label focus triggers
-                    });
-                }, 1600);
+            try {
+                const res = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(contactForm)).toString()
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+                feedbackOverlay.classList.add('active');
+                contactForm.reset();
+                inputs.forEach(input => { input.placeholder = " "; });
+            } catch (err) {
+                alert('Message failed to send. Please email sijilnv3@gmail.com directly.');
+            } finally {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
             }
         });
 
