@@ -517,8 +517,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetFormBtn = document.getElementById('reset-form-btn');
 
     if (contactForm) {
-        // Floating visual triggers focus
-        const inputs = contactForm.querySelectorAll('input, textarea');
+        // Only the visible fields inside .form-group are validated.
+        // Hidden Netlify fields (form-name, bot-field) are excluded.
+        const inputs = contactForm.querySelectorAll('.form-group input, .form-group textarea');
         inputs.forEach(input => {
             input.addEventListener('blur', () => {
                 validateField(input);
