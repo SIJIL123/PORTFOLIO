@@ -517,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetFormBtn = document.getElementById('reset-form-btn');
 
     if (contactForm) {
+        // Floating visual triggers focus
         // Only the visible fields inside .form-group are validated.
         // Hidden Netlify fields (form-name, bot-field) are excluded.
         const inputs = contactForm.querySelectorAll('.form-group input, .form-group textarea');
@@ -569,12 +570,24 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.disabled = true;
 
             try {
-                const res = await fetch('/', {
+                const data = Object.fromEntries(new FormData(contactForm).entries());
+                // Honeypot: silently drop submissions from bots
+                if (data['bot-field']) { feedbackOverlay.classList.add('active'); return; }
+                delete data['bot-field'];
+                delete data['form-name'];
+
+                const res = await fetch('https://api.web3forms.com/submit', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(new FormData(contactForm)).toString()
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify({
+                        access_key: '7031aceb-fa37-4dec-9cdd-0642051f843d',
+                        subject: `New contact message from ${data.name || 'website visitor'}`,
+                        from_name: 'Portfolio Contact Form',
+                        ...data
+                    })
                 });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const result = await res.json().catch(() => ({}));
+                if (!res.ok || !result.success) throw new Error(result.message || `HTTP ${res.status}`);
 
                 feedbackOverlay.classList.add('active');
                 contactForm.reset();
