@@ -40,11 +40,11 @@
     <!-- Left panel: Socials -->
     <aside class="side-panel side-left">
         <div class="side-panel-inner">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="side-icon" aria-label="GitHub">
+            <a href="https://github.com/SIJIL123" target="_blank" rel="noopener noreferrer" class="side-icon" aria-label="GitHub">
                 <i data-lucide="github"></i>
                 <span class="icon-label">GITHUB</span>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="side-icon" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/sijil-n-varghese-2a9970344" target="_blank" rel="noopener noreferrer" class="side-icon" aria-label="LinkedIn">
                 <i data-lucide="linkedin"></i>
                 <span class="icon-label">LINKEDIN</span>
             </a>
@@ -449,27 +449,29 @@
                         <div class="form-wrapper">
                             <div class="card-border"></div>
                             <h3 class="form-section-title">CONTACT FORM</h3>
-                            <form id="contact-form" autocomplete="off" novalidate>
+                            <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" autocomplete="off" novalidate>
+                                <input type="hidden" name="form-name" value="contact">
+                                <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
                                 <div class="form-group">
-                                    <input type="text" id="form-name" required placeholder=" ">
+                                    <input type="text" id="form-name" name="name" required placeholder=" ">
                                     <label for="form-name">Your Name</label>
                                     <span class="focus-line"></span>
                                     <span class="error-msg">Name field cannot be null.</span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" id="form-phone" required placeholder=" ">
+                                    <input type="tel" id="form-phone" name="phone" required placeholder=" ">
                                     <label for="form-phone">Your Phone</label>
                                     <span class="focus-line"></span>
                                     <span class="error-msg">Please enter a valid phone number.</span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" id="form-email" required placeholder=" ">
+                                    <input type="email" id="form-email" name="email" required placeholder=" ">
                                     <label for="form-email">Your Email</label>
                                     <span class="focus-line"></span>
                                     <span class="error-msg">Please enter a valid email.</span>
                                 </div>
                                 <div class="form-group">
-                                    <textarea id="form-message" required placeholder=" " rows="4"></textarea>
+                                    <textarea id="form-message" name="message" required placeholder=" " rows="4"></textarea>
                                     <label for="form-message">Message Parameters</label>
                                     <span class="focus-line"></span>
                                     <span class="error-msg">Message body cannot be empty.</span>
